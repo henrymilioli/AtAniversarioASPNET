@@ -1,0 +1,73 @@
+﻿@model IEnumerable<AtAniversarioWebCore.Models.Pessoa>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Gerenciamento de Aniversario</h1>
+
+<p>
+    <a asp-action="Create">Adicionar amigo</a>
+</p>
+
+<form asp-action="Search" asp-controller="Pessoa" method="get">
+    <div class="form-group">
+        <label class="control-label">Pesquisar na lista:</label>
+        <input class="form-control" name="query" id="query" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Pesquisar" class="btn btn-primary" />
+    </div>
+    <div>
+        <a asp-action="Index">Voltar</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <td>
+                @Html.DisplayNameFor(model => model.DiasRestantes)
+            </td>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiasRestantes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
